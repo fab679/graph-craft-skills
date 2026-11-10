@@ -28,12 +28,20 @@ Start from a node, a search, or a schema pattern:
 
 // expand selected nodes by one hop
 {"name":"subgraph","arguments":{"graph":"Investigation","nodes":["Elena Marsh","Warehouse 7"],"depth":1,"limit":100}}
+
+// property chip
+{"name":"subgraph","arguments":{"graph":"Investigation","type":"Person","prop":"role","propValue":"Warehouse","depth":1}}
+
+// expand and auto-link to nodes already on the canvas
+{"name":"subgraph","arguments":{"graph":"Investigation","nodes":["Elena Marsh"],"linkTo":["Jeremy Bowers","Vehicle Envoy"],"depth":1}}
 ```
 
-`subgraph` returns a normal graph-craft document plus `truncated` (cap hit)
-and `moreAvailable` (unexpanded neighbours remain). The canvas **Explore**
-panel exposes the same flow without DQL. Incoming edges use `@reverse`; a
-graph saved before the reverse schema needs one save first.
+`subgraph` returns a normal graph-craft document plus `truncated` (cap hit),
+`moreAvailable` (unexpanded neighbours remain) and optional `linkEdges` back
+to the `linkTo` nodes. The canvas **Explore** panel exposes the same flow
+without DQL: chip-based pattern builder, right-click **Expand neighbours**, and
+automatic cross-links. Incoming edges use `@reverse`; a graph saved before the
+reverse schema needs one save first.
 
 Editing that subset? Use the incremental tools on the same graph name —
 `nodes_append`, `edges_append`, `nodes_update`, `nodes_delete`, `edges_delete`,
