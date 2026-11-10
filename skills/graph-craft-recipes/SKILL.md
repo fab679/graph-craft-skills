@@ -29,7 +29,7 @@ Start from a node, a search, or a schema pattern:
 // expand selected nodes by one hop
 {"name":"subgraph","arguments":{"graph":"Investigation","nodes":["Elena Marsh","Warehouse 7"],"depth":1,"limit":100}}
 
-// property chip
+// property filter
 {"name":"subgraph","arguments":{"graph":"Investigation","type":"Person","prop":"role","propValue":"Warehouse","depth":1}}
 
 // expand and auto-link to nodes already on the canvas
@@ -43,10 +43,11 @@ Start from a node, a search, or a schema pattern:
 `moreAvailable` (unexpanded neighbours remain) and optional `linkEdges` back
 to the `linkTo` nodes. The canvas **Explore** panel exposes the same flow
 without DQL: a search-first pattern builder of any length (type + `TAB` or
-click chips), right-click **Expand neighbours**, and automatic cross-links.
-In the web app a saved graph is a **perspective**, with its own data. Incoming
-edges use `@reverse`; a graph saved before the reverse schema needs one save
-first.
+click a suggestion row), right-click **Expand neighbours**, and automatic
+cross-links. The panel also owns the perspective picker: choosing a perspective
+there loads it. In the web app a saved graph is a **perspective**, with its own
+data. Incoming edges use `@reverse`; a graph saved before the reverse schema
+needs one save first.
 
 Editing that subset? Use the incremental tools on the same graph name —
 `nodes_append`, `edges_append`, `nodes_update`, `nodes_delete`, `edges_delete`,

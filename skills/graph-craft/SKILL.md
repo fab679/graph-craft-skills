@@ -56,7 +56,7 @@ IDs vs labels: most tools accept **either** a node id or a label (exact, then ca
 ## Core rules
 
 - Prefer incremental tools (`nodes_append`, `edges_append`, `nodes_update`, `nodes_delete`, `edges_update`, `edges_delete`) over `graphs_save`.
-- For a large graph, use `subgraph` (seed/search/type/rel, 1–3 hops, capped) or the canvas **Explore** panel instead of `graphs_load`.
+- For a large graph, use `subgraph` (seed/search/type/rel or an arbitrary node/relationship `pattern`, capped) or the canvas **Explore** panel instead of `graphs_load`. In the app, a saved graph is a **perspective**; the Explore panel holds the perspective picker.
 - Never `graphs_save` a subset loaded with `subgraph`: edit it with the incremental write tools. The canvas Explore view auto-syncs only the changed nodes/edges; **Remove from canvas** is view-only and **Delete from graph** is a real delete.
 - Reader keys read; editor keys write and drive the canvas.
 - Canvas commands are **fire-and-forget**. If no board is open they are dropped. Data writes remain durable.

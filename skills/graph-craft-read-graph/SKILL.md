@@ -11,12 +11,12 @@ Use this skill before writing or answering. Start broad, then narrow.
 
 | Tool | Arguments | Use it for |
 |---|---|---|
-| `project_info` | `{}` | Project id, name, stored graphs |
-| `graphs_list` | `{}` | Graph names and `updated` stamps |
+| `project_info` | `{}` | Project id, name, saved perspectives |
+| `graphs_list` | `{}` | Perspective names and `updated` stamps |
 | `graphs_load` | `{"graph":"<name>"}` | Whole graph as JSON: nodes, edges, styles, groups, notes, embeddings |
 | `graph_overview` | `{"graph":"<name>"}` | Counts by node/relationship type, embedding coverage, top hubs |
 | `subgraph` | `{"graph":"<name>","seed"\|"search"\|"type"\|"nodes"\|"pattern":…,"depth":1,"limit":200,"prop":"<key>","linkTo":["<id>"]}` | Load only a seed/search/pattern neighbourhood. Returns a graph-craft document plus `truncated`, `moreAvailable` and optional `linkEdges` |
-| `node_context` | `{"graph":"<name>","node":"<id or label>","hops":1}` | One node, properties, 1–2 hop neighbours and edges |
+| `node_context` | `{"graph":"<name>","node":"<id or label>","depth":1}` | One node, properties, 1–3 hop neighbours and edges |
 | `find_path` | `{"graph":"<name>","from":"<id or label>","to":"<id or label>"}` | Shortest path between two nodes |
 
 `node` and the path endpoints accept a node id **or** a label (exact, then case-insensitive).
@@ -48,7 +48,7 @@ Use this skill before writing or answering. Start broad, then narrow.
 
 {"name":"subgraph","arguments":{"graph":"Investigation","pattern":[{"kind":"node","type":"Person"},{"kind":"rel","label":"DRIVES"},{"kind":"node","type":"Vehicle"},{"kind":"rel","label":"INVOLVED_IN"},{"kind":"node","type":"Crime"}]}}
 
-{"name":"node_context","arguments":{"graph":"Investigation","node":"Elena Marsh","hops":2}}
+{"name":"node_context","arguments":{"graph":"Investigation","node":"Elena Marsh","depth":2}}
 
 {"name":"find_path","arguments":{"graph":"Investigation","from":"Elena Marsh","to":"Jeremy Bowers"}}
 ```
@@ -59,5 +59,5 @@ Use this skill before writing or answering. Start broad, then narrow.
 - Edges carry `id`, `source`, `target`, `label`, optional `properties`.
 - Prefer ids from the result when you later write. Labels work but can be ambiguous.
 - `graphs_load` is a snapshot. A live board may have unsaved local changes; see `graph-craft-collaborate-live`.
-- `subgraph` returns a normal graph-craft document. `truncated` means the cap was hit; `moreAvailable` means unexpanded neighbours remain. Pass `nodes` to expand a selection by one hop. `prop`/`propValue` narrow a pattern with a property chip; `linkTo` returns `linkEdges` between the expansion and nodes already on the canvas. `pattern` accepts any length of node/relationship tokens; an empty node/rel token means `(any)`. The canvas Explore bar is the same builder: type, press TAB, or click chips.
+- `subgraph` returns a normal graph-craft document. `truncated` means the cap was hit; `moreAvailable` means unexpanded neighbours remain. Pass `nodes` to expand a selection by one hop. `prop`/`propValue` narrow a pattern with a property filter; `linkTo` returns `linkEdges` between the expansion and nodes already on the canvas. `pattern` accepts any length of node/relationship tokens; an empty node/rel token means `(any)`. The canvas Explore panel is the same builder — and it owns the perspective picker: choosing a perspective there loads it. Type, press TAB, or click a suggestion row.
 - A partial load is **not** a saved graph. Edit it with the incremental write tools (`nodes_append`, `edges_append`, `nodes_update`, `nodes_delete`, `edges_delete`, `edges_update`) against the same graph name; never `graphs_save` a subset. The canvas Explore view does this automatically: it diffs edits against the loaded subset and writes only those changes. **Remove from canvas** is view-only; **Delete from graph** removes the record. The canvas **Clear canvas** dock button empties the view without deleting the graph.
