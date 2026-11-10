@@ -65,6 +65,7 @@ Agent `select` is **visual-only**; it does not open the manual multi-select Deta
 {"action":"group_expand","group":"Warehouse lead"}
 {"action":"group_visibility","group":"Warehouse lead","visibility":"hidden"}
 {"action":"group_rename","group":"Warehouse lead","groupName":"Warehouse cell"}
+{"action":"group_delete","group":"Warehouse cell"}
 {"action":"group_color","group":"Warehouse lead","groupColor":"#dc2626"}
 {"action":"group_move","group":"Warehouse lead","direction":"top"}
 
@@ -108,7 +109,7 @@ Agent `select` is **visual-only**; it does not open the manual multi-select Deta
 ```
 
 - `export` triggers a browser download of the current view (`svg` or `png`); `export_json` downloads the board document.
-- `panel` opens a dock panel (`find`, `layers`, `layout`, `focus`, `analyze`, `time`, `groups`, `db`, `file`) or closes it with `null`.
+- `panel` opens a dock panel (`explore`, `find`, `layers`, `layout`, `focus`, `analyze`, `time`, `groups`, `db`, `file`) or closes it with `null`.
 - `canvas_clear` starts an empty board. `graph_load` loads a named graph from Dgraph.
 - `theme` and `accent` change the board appearance; `render_mode` switches canvas/WebGL.
 

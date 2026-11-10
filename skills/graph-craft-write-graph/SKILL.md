@@ -28,7 +28,7 @@ Removing a node from the canvas is view-only; deleting it from the graph is a re
 ```
 
 - Up to 500 per call. Creates the graph when missing. Returns the new node ids.
-- Each node accepts `label`, `type`, `properties`, optional `style`, `notes`, `embedding`.
+- Each node accepts `label`, `type` and `properties`. Use `vectors_set` for embeddings; style/notes are canvas-side.
 
 ### Append edges
 
@@ -49,14 +49,14 @@ Removing a node from the canvas is view-only; deleting it from the graph is a re
 ]}}
 ```
 
-- Match by `id` or `label`. Set only the predicates you pass (`gv.label`, `gv.type`, `gv.props`, `gv.embedding`).
+- Pass an id **or** a label as the `id` field. Only the fields you send are written (`gv.label`, `gv.type`, `gv.props`, `gv.embedding`).
 - `properties` **replaces** that node's property JSON. Read the node first if you need a partial update.
 - Geo/time refresh from `lat`/`lng` and the first date-like property.
 
 ### Delete nodes
 
 ```jsonc
-{"name":"nodes_delete","arguments":{"graph":"demo","nodes":["<node id>","Bob"]}}
+{"name":"nodes_delete","arguments":{"graph":"demo","ids":["<node id>","Bob"]}}
 ```
 
 Deletes the nodes and their edges. Accepts ids or labels.

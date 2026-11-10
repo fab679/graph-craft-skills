@@ -210,15 +210,20 @@ canvas** (view-only) from **Delete from graph** (real delete).
 
 ## Publish
 
-The package is publish-ready. From the repository root:
+`npx graph-craft-skills` installs the published npm version. The public GitHub
+repo is the source of the latest skills, so prefer:
+
+```bash
+npx skills add fab679/graph-craft-skills
+```
+
+To publish a new npm version from the repository root:
 
 ```bash
 npm publish --access public
 ```
 
-After publishing, `npx graph-craft-skills` works for anyone; the public GitHub
-repo also makes `npx skills add fab679/graph-craft-skills` work. Until then,
-run it locally:
+You can also run the installer from a checkout:
 
 ```bash
 node bin/install.mjs --list

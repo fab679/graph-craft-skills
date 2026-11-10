@@ -35,14 +35,14 @@ Start from a node, a search, or a schema pattern:
 // expand and auto-link to nodes already on the canvas
 {"name":"subgraph","arguments":{"graph":"Investigation","nodes":["Elena Marsh"],"linkTo":["Jeremy Bowers","Vehicle Envoy"],"depth":1}}
 
-// arbitrary pattern, any length; empty node/rel = (any)
+// visual pattern, up to 11 tokens; empty node/rel = (any)
 {"name":"subgraph","arguments":{"graph":"Investigation","pattern":[{"kind":"node","type":"Person"},{"kind":"rel"},{"kind":"node"},{"kind":"rel","label":"INVOLVED_IN"},{"kind":"node","type":"Crime"}]}}
 ```
 
 `subgraph` returns a normal graph-craft document plus `truncated` (cap hit),
 `moreAvailable` (unexpanded neighbours remain) and optional `linkEdges` back
 to the `linkTo` nodes. The canvas **Explore** panel exposes the same flow
-without DQL: a search-first pattern builder of any length (type + `TAB` or
+without DQL: a search-first pattern builder of up to 11 tokens (type + `TAB` or
 click a suggestion row), right-click **Expand neighbours**, and automatic
 cross-links. The panel also owns the perspective picker: choosing a perspective
 there loads it. In the web app a saved graph is a **perspective**, with its own
