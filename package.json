@@ -1,6 +1,6 @@
 {
   "name": "graph-craft-skills",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Agent skills for graph-craft: read, search, write and drive a graph over MCP.",
   "type": "module",
   "bin": {

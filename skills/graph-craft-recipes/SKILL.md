@@ -34,14 +34,19 @@ Start from a node, a search, or a schema pattern:
 
 // expand and auto-link to nodes already on the canvas
 {"name":"subgraph","arguments":{"graph":"Investigation","nodes":["Elena Marsh"],"linkTo":["Jeremy Bowers","Vehicle Envoy"],"depth":1}}
+
+// arbitrary pattern, any length; empty node/rel = (any)
+{"name":"subgraph","arguments":{"graph":"Investigation","pattern":[{"kind":"node","type":"Person"},{"kind":"rel"},{"kind":"node"},{"kind":"rel","label":"INVOLVED_IN"},{"kind":"node","type":"Crime"}]}}
 ```
 
 `subgraph` returns a normal graph-craft document plus `truncated` (cap hit),
 `moreAvailable` (unexpanded neighbours remain) and optional `linkEdges` back
 to the `linkTo` nodes. The canvas **Explore** panel exposes the same flow
-without DQL: chip-based pattern builder, right-click **Expand neighbours**, and
-automatic cross-links. Incoming edges use `@reverse`; a graph saved before the
-reverse schema needs one save first.
+without DQL: a search-first pattern builder of any length (type + `TAB` or
+click chips), right-click **Expand neighbours**, and automatic cross-links.
+In the web app a saved graph is a **perspective**, with its own data. Incoming
+edges use `@reverse`; a graph saved before the reverse schema needs one save
+first.
 
 Editing that subset? Use the incremental tools on the same graph name —
 `nodes_append`, `edges_append`, `nodes_update`, `nodes_delete`, `edges_delete`,
