@@ -17,6 +17,30 @@ Each recipe assumes a working MCP connection and a project key. Tool calls use t
 
 Use `graph_overview` for “how many”, “which types”, “what are the hubs”. Load the full graph only when you need it.
 
+## 1b. Explore a large graph without loading it all
+
+Start from a node, a search, or a schema pattern:
+
+```jsonc
+{"name":"subgraph","arguments":{"graph":"Investigation","search":"Elena Marsh","depth":2,"limit":200}}
+
+{"name":"subgraph","arguments":{"graph":"Investigation","type":"Person","rel":"DRIVES","targetType":"Vehicle","depth":1,"limit":200}}
+
+// expand selected nodes by one hop
+{"name":"subgraph","arguments":{"graph":"Investigation","nodes":["Elena Marsh","Warehouse 7"],"depth":1,"limit":100}}
+```
+
+`subgraph` returns a normal graph-craft document plus `truncated` (cap hit)
+and `moreAvailable` (unexpanded neighbours remain). The canvas **Explore**
+panel exposes the same flow without DQL. Incoming edges use `@reverse`; a
+graph saved before the reverse schema needs one save first.
+
+Editing that subset? Use the incremental tools on the same graph name —
+`nodes_append`, `edges_append`, `nodes_update`, `nodes_delete`, `edges_delete`,
+`edges_update`. Do not `graphs_save` the subset; that would replace the whole
+graph. On the canvas, edits auto-sync the diff, **Remove from canvas** is
+view-only, and **Delete from graph** removes the record.
+
 ## 2. Answer a question
 
 ```jsonc

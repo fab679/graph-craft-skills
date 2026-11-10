@@ -27,7 +27,7 @@ Accept: application/json, text/event-stream
 {"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}
 ```
 
-The server exposes **24 tools**. Call one:
+The server exposes **25 tools**. Call one:
 
 ```json
 {"jsonrpc":"2.0","id":2,"method":"tools/call","params":{

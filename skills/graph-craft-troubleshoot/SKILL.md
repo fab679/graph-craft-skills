@@ -25,6 +25,9 @@ description: Diagnose graph-craft MCP failures — 401/403, reader vs editor sco
 | `Predicate gv.geo is not indexed` | Old schema | Save or update once |
 | `Predicate gv.eventTime is not indexed` | Old schema | Save or update once |
 | Unknown endpoint for an edge | Endpoint id or label not found | `node_context` or `graphs_list`, then use the exact id |
+| `subgraph` returns zero nodes | Name/type/query did not match, or the graph has no such relationship | Try a broader search; list types with `graph_overview` |
+| Incoming expansion is missing | The graph was saved before the `@reverse` schema | Save the graph once with the current schema |
+| Explore view says “capped” | The node/seed cap was hit | Raise `limit` or expand a smaller selection |
 | Vector dimension error | Mixed dimensions in one graph | Re-embed with one model/dimension |
 | Canvas command no effect | No board open, wrong graph, or node not in the open doc | Open the graph, then retry |
 | Path does not highlight | Endpoint labels differ or the tab is dirty | Load the graph, hard-reload once, retry |

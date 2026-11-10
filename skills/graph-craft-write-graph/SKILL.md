@@ -7,6 +7,15 @@ description: Write a graph-craft graph — append, update and delete nodes and e
 
 Writes need an **editor** key. Prefer incremental tools over `graphs_save`; Dgraph updates individual predicates and the open board receives a live patch.
 
+## Editing a partial load
+
+If you loaded a subset with `subgraph`, edit it with the incremental tools against
+the **same graph name**. Never `graphs_save` a partial document: that would replace
+the graph with only the loaded nodes. The canvas Explore view follows the same
+rule — it diffs edits against the loaded subset and syncs only those changes.
+Removing a node from the canvas is view-only; deleting it from the graph is a real
+`nodes_delete`.
+
 ## Nodes and edges
 
 ### Append nodes

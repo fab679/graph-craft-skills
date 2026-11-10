@@ -158,7 +158,7 @@ curl -s http://localhost:3100/mcp \
   -d '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}'
 ```
 
-You should see 24 tools. Then call `project_info` with `{}` and `graphs_list` with `{}`.
+You should see 25 tools. Then call `project_info` with `{}` and `graphs_list` with `{}`.
 
 ### 5. Install the skills
 
@@ -183,7 +183,7 @@ Restart the agent (or reload skills) so it picks up the new `SKILL.md` files. Th
 | Folder | Skill | Purpose |
 |---|---|---|
 | `skills/graph-craft-connect/` | `graph-craft-connect` | Endpoint, bearer key, scopes, discovery, first call |
-| `skills/graph-craft-read-graph/` | `graph-craft-read-graph` | Project info, graph lists, full loads, overview, node context, paths |
+| `skills/graph-craft-read-graph/` | `graph-craft-read-graph` | Project info, graph lists, full or partial loads (`subgraph`), overview, node context, paths |
 | `skills/graph-craft-search-and-answer/` | `graph-craft-search-and-answer` | Fulltext search, `ask`, DQL, vectors, geo, time |
 | `skills/graph-craft-write-graph/` | `graph-craft-write-graph` | Incremental node/edge writes, graph save/delete/duplicate, vectors |
 | `skills/graph-craft-drive-canvas/` | `graph-craft-drive-canvas` | Camera, selection, layout, paths, algorithms, styling, groups, notes, tabs, export |
@@ -194,6 +194,12 @@ Restart the agent (or reload skills) so it picks up the new `SKILL.md` files. Th
 The main [`skills/graph-craft/SKILL.md`](skills/graph-craft/SKILL.md) is the
 router: it explains the mental model, the core rules and which skill to read
 next.
+
+`graph-craft-read-graph` includes `subgraph` for seed/search/pattern loads
+instead of whole-graph loads; the canvas **Explore** panel uses the same
+loader. Edits on a subset are written back with the incremental tools (never
+`graphs_save`); the canvas does this automatically and separates **Remove from
+canvas** (view-only) from **Delete from graph** (real delete).
 
 ## Requirements
 
